@@ -1,0 +1,33 @@
+project:
+  name: "Student Segmentation"
+  run_prefix: "student_seg"
+
+data:
+  raw_path: "data/raw/students_performance.csv"
+  processed_path: "data/processed/students_cleaned.csv"
+  clustered_path: "data/processed/students_clustered.csv"
+  id_col: "Student_ID"
+  features:
+    - "Math_Score"
+    - "Reading_Score"
+    - "Writing_Score"
+  categorical_cols:
+    - "Gender"
+    - "Test_Prep_Course"
+
+model:
+  k_range: [2, 3, 4, 5, 6, 7, 8]
+  default_k: 4
+  init_method: "k-means++"
+  max_iters: 300
+  tol: 1e-4
+  random_state: 42
+  save_model_path: "models/kmeans.pkl"
+  save_scaler_path: "models/scaler.pkl"
+
+paths:
+  figures_dir: "reports/figures/student_segmentation"
+  heatmaps_dir: "reports/figures/additional_grade_heatmaps"
+  metrics_summary: "reports/metrics_summary.csv"
+  inference_history: "reports/inference_history.csv"
+  experiment_logs: "docs/experiment_logs.csv"
